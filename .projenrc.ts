@@ -10,6 +10,11 @@ const project = new cdk.JsiiProject({
   repositoryUrl: "ssh://git@github.com/TymoteuszGach/projen-template.git",
   gitignore: [".idea"],
   prettier: true,
+  prettierOptions: {
+    settings: {
+      printWidth: 120,
+    },
+  },
   sampleCode: false,
   npmDistTag: "latest",
   npmRegistryUrl: "https://npm.pkg.github.com",
