@@ -4,7 +4,7 @@ const project = new cdk.JsiiProject({
   author: "Tymoteusz Gach",
   authorAddress: "tymoteusz.gach@merapar.com",
   defaultReleaseBranch: "main",
-  name: "@tyga/projen-template",
+  name: "@tymoteuszgach/projen-template",
   packageManager: javascript.NodePackageManager.NPM,
   projenrcTs: true,
   repositoryUrl: "ssh://git@github.com/TymoteuszGach/projen-template.git",
