@@ -1,5 +1,5 @@
 {
-  "name": "projen-template",
+  "name": "@tyga/projen-template",
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/TymoteuszGach/projen-template.git"
