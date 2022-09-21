@@ -2986,6 +2986,7 @@ The list of modules to depend on.
 | <code><a href="#@tymoteuszgach/projen-template.CdkMicroservice.property.cdkDeps">cdkDeps</a></code> | <code>projen.awscdk.AwsCdkDeps</code> | *No description.* |
 | <code><a href="#@tymoteuszgach/projen-template.CdkMicroservice.property.cdkTasks">cdkTasks</a></code> | <code>projen.awscdk.CdkTasks</code> | Common CDK tasks. |
 | <code><a href="#@tymoteuszgach/projen-template.CdkMicroservice.property.cdkVersion">cdkVersion</a></code> | <code>string</code> | The CDK version this app is using. |
+| <code><a href="#@tymoteuszgach/projen-template.CdkMicroservice.property.projectName">projectName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -3757,6 +3758,16 @@ The CDK version this app is using.
 
 ---
 
+##### `projectName`<sup>Required</sup> <a name="projectName" id="@tymoteuszgach/projen-template.CdkMicroservice.property.projectName"></a>
+
+```typescript
+public readonly projectName: string;
+```
+
+- *Type:* string
+
+---
+
 #### Constants <a name="Constants" id="Constants"></a>
 
 | **Name** | **Type** | **Description** |
@@ -3779,5 +3790,83 @@ Normally
 this task should synthesize the project files.
 
 ---
+
+### SampleCode <a name="SampleCode" id="@tymoteuszgach/projen-template.SampleCode"></a>
+
+#### Initializers <a name="Initializers" id="@tymoteuszgach/projen-template.SampleCode.Initializer"></a>
+
+```typescript
+import { SampleCode } from '@tymoteuszgach/projen-template'
+
+new SampleCode(project: CdkMicroservice)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@tymoteuszgach/projen-template.SampleCode.Initializer.parameter.project">project</a></code> | <code><a href="#@tymoteuszgach/projen-template.CdkMicroservice">CdkMicroservice</a></code> | *No description.* |
+
+---
+
+##### `project`<sup>Required</sup> <a name="project" id="@tymoteuszgach/projen-template.SampleCode.Initializer.parameter.project"></a>
+
+- *Type:* <a href="#@tymoteuszgach/projen-template.CdkMicroservice">CdkMicroservice</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@tymoteuszgach/projen-template.SampleCode.postSynthesize">postSynthesize</a></code> | Called after synthesis. |
+| <code><a href="#@tymoteuszgach/projen-template.SampleCode.preSynthesize">preSynthesize</a></code> | Called before synthesis. |
+| <code><a href="#@tymoteuszgach/projen-template.SampleCode.synthesize">synthesize</a></code> | Synthesizes files to the project output directory. |
+
+---
+
+##### `postSynthesize` <a name="postSynthesize" id="@tymoteuszgach/projen-template.SampleCode.postSynthesize"></a>
+
+```typescript
+public postSynthesize(): void
+```
+
+Called after synthesis.
+
+Order is *not* guaranteed.
+
+##### `preSynthesize` <a name="preSynthesize" id="@tymoteuszgach/projen-template.SampleCode.preSynthesize"></a>
+
+```typescript
+public preSynthesize(): void
+```
+
+Called before synthesis.
+
+##### `synthesize` <a name="synthesize" id="@tymoteuszgach/projen-template.SampleCode.synthesize"></a>
+
+```typescript
+public synthesize(): void
+```
+
+Synthesizes files to the project output directory.
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@tymoteuszgach/projen-template.SampleCode.property.project">project</a></code> | <code>projen.Project</code> | *No description.* |
+
+---
+
+##### `project`<sup>Required</sup> <a name="project" id="@tymoteuszgach/projen-template.SampleCode.property.project"></a>
+
+```typescript
+public readonly project: Project;
+```
+
+- *Type:* projen.Project
+
+---
+
 
 
