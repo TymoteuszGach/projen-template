@@ -11,6 +11,8 @@ const project = new cdk.JsiiProject({
   gitignore: [".idea"],
   prettier: true,
   sampleCode: false,
+  npmDistTag: "latest",
+  npmRegistryUrl: "https://npm.pkg.github.com",
 });
 
 project.synth();
