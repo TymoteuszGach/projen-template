@@ -10,6 +10,7 @@ const project = new cdk.JsiiProject({
   repositoryUrl: "ssh://git@github.com/TymoteuszGach/projen-template.git",
   gitignore: [".idea"],
   prettier: true,
+  sampleCode: false,
 });
 
 project.synth();
