@@ -18,6 +18,8 @@ const project = new cdk.JsiiProject({
   sampleCode: false,
   npmDistTag: "latest",
   npmRegistryUrl: "https://npm.pkg.github.com",
+  deps: ["projen"],
+  peerDeps: ["projen"],
 });
 
 project.synth();
