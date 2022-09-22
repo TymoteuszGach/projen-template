@@ -18,9 +18,9 @@ const project = new cdk.JsiiProject({
   sampleCode: false,
   npmDistTag: "latest",
   npmRegistryUrl: "https://npm.pkg.github.com",
-  devDeps: ["fs-extra", "@types/fs-extra@^8"],
   deps: ["projen"],
   peerDeps: ["projen"],
+  bundledDeps: ["fs-extra", "@types/fs-extra@^8"],
 });
 
 project.synth();
