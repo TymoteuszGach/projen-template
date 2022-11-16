@@ -21,7 +21,7 @@ export class SampleCode extends Component {
     const infraDir = path.join(this.cdkMicroservice.srcdir, "infrastructure");
     new SampleDir(this.cdkMicroservice, infraDir, {
       files: {
-        "app.ts": createAppTsContents(this.cdkMicroservice.projectName),
+        "main.ts": createAppTsContents(this.cdkMicroservice.projectName),
       },
     });
 
