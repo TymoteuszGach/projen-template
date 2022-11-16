@@ -24,9 +24,6 @@ export class SampleCode extends Component {
       },
     });
 
-    const appDir = path.join(this.cdkMicroservice.srcdir, "app");
-    new SampleDir(this.cdkMicroservice, appDir, {});
-
     const libDir = path.join(this.cdkMicroservice.srcdir, "lib");
     new SampleDir(this.cdkMicroservice, libDir, {
       files: {
