@@ -16,9 +16,7 @@ export class SampleCode extends Component {
       return;
     }
 
-    const projectType = this.cdkMicroservice.projectName.replace(/(\w)(\w*)/g, function (_, g1, g2) {
-      return g1.toUpperCase() + g2.toLowerCase();
-    });
+    const projectType = toCamelCase(this.cdkMicroservice.projectName);
 
     const infraDir = path.join(this.cdkMicroservice.srcdir, "infrastructure");
     new SampleDir(this.cdkMicroservice, infraDir, {
@@ -135,4 +133,12 @@ export class ${projectType}Stack extends cdk.Stack {
     super(scope, id, props);
   }
 }`;
+}
+
+function toCamelCase(text: string): string {
+  return text.replace(/-\w/g, clearAndUpper);
+}
+
+function clearAndUpper(text: string): string {
+  return text.replace(/-/, "").toUpperCase();
 }
