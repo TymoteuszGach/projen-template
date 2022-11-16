@@ -16,7 +16,7 @@ export class SampleCode extends Component {
       return;
     }
 
-    const projectType = toCamelCase(this.cdkMicroservice.projectName);
+    const projectType = toPascalCase(this.cdkMicroservice.projectName);
 
     const infraDir = path.join(this.cdkMicroservice.srcdir, "infrastructure");
     new SampleDir(this.cdkMicroservice, infraDir, {
@@ -135,8 +135,8 @@ export class ${projectType}Stack extends cdk.Stack {
 }`;
 }
 
-function toCamelCase(text: string): string {
-  return text.replace(/-\w/g, clearAndUpper);
+function toPascalCase(text: string): string {
+  return text.replace(/(^\w|-\w)/g, clearAndUpper);
 }
 
 function clearAndUpper(text: string): string {
