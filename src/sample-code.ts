@@ -69,6 +69,7 @@ app.synth();
 
 function createPipelineStackTsContents(): string {
   return `import { Stack, StackProps } from "aws-cdk-lib";
+import * as ssm from "aws-cdk-lib/aws-ssm";
 import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
 import { Construct } from "constructs";
 import { PipelineAppStage, PipelineAppStageProps } from "./pipeline-app-stage";
