@@ -18,14 +18,16 @@ export class SampleCode extends Component {
 
     const projectType = toPascalCase(this.cdkMicroservice.projectName);
 
-    const infraDir = path.join(this.cdkMicroservice.srcdir, "infrastructure");
-    new SampleDir(this.cdkMicroservice, infraDir, {
+    new SampleDir(this.cdkMicroservice, this.cdkMicroservice.srcdir, {
       files: {
         "main.ts": createAppTsContents(this.cdkMicroservice.projectName),
       },
     });
 
-    const libDir = path.join(infraDir, "lib");
+    const appDir = path.join(this.cdkMicroservice.srcdir, "app");
+    new SampleDir(this.cdkMicroservice, appDir, {});
+
+    const libDir = path.join(this.cdkMicroservice.srcdir, "lib");
     new SampleDir(this.cdkMicroservice, libDir, {
       files: {
         [`${this.cdkMicroservice.projectName}-stack.ts`]: projectStackContents(projectType),
