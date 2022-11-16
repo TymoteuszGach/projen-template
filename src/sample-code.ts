@@ -17,10 +17,11 @@ export class SampleCode extends Component {
     }
 
     const projectType = toPascalCase(this.cdkMicroservice.projectName);
+    const repoName = `tymoteuszgach/${this.cdkMicroservice.projectName}`;
 
     new SampleDir(this.cdkMicroservice, this.cdkMicroservice.srcdir, {
       files: {
-        "main.ts": createAppTsContents(this.cdkMicroservice.projectName),
+        "main.ts": createAppTsContents(repoName),
       },
     });
 
@@ -42,13 +43,13 @@ export class SampleCode extends Component {
   }
 }
 
-function createAppTsContents(projectName: string): string {
+function createAppTsContents(repositoryName: string): string {
   return `#!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { PipelineStack, PipelineStackProps } from "./lib/pipeline-stack";
 
-const REPOSITORY_NAME = "${projectName}";
+const REPOSITORY_NAME = "${repositoryName}";
 
 const app = new cdk.App();
 const props: PipelineStackProps = {
