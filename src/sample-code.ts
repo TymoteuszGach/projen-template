@@ -17,11 +17,10 @@ export class SampleCode extends Component {
     }
 
     const projectType = toPascalCase(this.cdkMicroservice.projectName);
-    const repoName = `tymoteuszgach/${this.cdkMicroservice.projectName}`;
 
     new SampleDir(this.cdkMicroservice, this.cdkMicroservice.srcdir, {
       files: {
-        "main.ts": createAppTsContents(repoName),
+        "main.ts": createAppTsContents("TymoteuszGach", this.cdkMicroservice.projectName),
       },
     });
 
@@ -43,18 +42,21 @@ export class SampleCode extends Component {
   }
 }
 
-function createAppTsContents(repositoryName: string): string {
+function createAppTsContents(repositoryOwner: string, repositoryName: string): string {
   return `#!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { PipelineStack, PipelineStackProps } from "./lib/pipeline-stack";
 
+const REPOSITORY_OWNER = "${repositoryOwner}";
 const REPOSITORY_NAME = "${repositoryName}";
 
 const app = new cdk.App();
 const props: PipelineStackProps = {
     git: {
+        owner: REPOSITORY_OWNER,
         repository: REPOSITORY_NAME,
+        codeStarConnectionSSMParameterName: "/github-connection-arn",
     },
     pipelineAppStageProps: {},
 };
@@ -74,6 +76,8 @@ import { PipelineAppStage, PipelineAppStageProps } from "./pipeline-app-stage";
 const DEFAULT_MAIN_BRANCH_NAME = "main";
 
 export interface GitProps {
+    codeStarConnectionSSMParameterName: string;
+    owner: string;
     repository: string;
     branch?: string;
 }
@@ -87,12 +91,19 @@ export class PipelineStack extends Stack {
     constructor(scope: Construct, id: string, props: PipelineStackProps) {
         super(scope, id, props);
 
+        const connectionArn = ssm.StringParameter.fromStringParameterAttributes(this, "ConnectionParameter", {
+            parameterName: props.git.codeStarConnectionSSMParameterName,
+        }).stringValue;
+
+        const repositoryName = \`\${props.git.owner}/\${props.git.repository}\`;
         const branch = props.git.branch ?? DEFAULT_MAIN_BRANCH_NAME;
 
         const pipeline = new CodePipeline(this, "Pipeline", {
             synth: new ShellStep("Synth", {
-                input: CodePipelineSource.gitHub(props.git.repository, branch),
-                commands: ["npm run test", "npm run package"],
+                input: CodePipelineSource.connection(repositoryName, branch, {
+                    connectionArn: connectionArn,
+                }),
+                commands: ["npm run build", "npm run synth"],
             }),
         });
 
