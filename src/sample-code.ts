@@ -53,12 +53,12 @@ const REPOSITORY_NAME = "${repositoryName}";
 
 const app = new cdk.App();
 const props: PipelineStackProps = {
-    git: {
-        owner: REPOSITORY_OWNER,
-        repository: REPOSITORY_NAME,
-        codeStarConnectionSSMParameterName: "/github-connection-arn",
-    },
-    pipelineAppStageProps: {},
+  git: {
+    owner: REPOSITORY_OWNER,
+    repository: REPOSITORY_NAME,
+    codeStarConnectionSSMParameterName: "/github-connection-arn",
+  },
+  pipelineAppStageProps: {},
 };
 
 new PipelineStack(app, "PipelineStack", props);
@@ -77,39 +77,39 @@ import { PipelineAppStage, PipelineAppStageProps } from "./pipeline-app-stage";
 const DEFAULT_MAIN_BRANCH_NAME = "main";
 
 export interface GitProps {
-    codeStarConnectionSSMParameterName: string;
-    owner: string;
-    repository: string;
-    branch?: string;
+  codeStarConnectionSSMParameterName: string;
+  owner: string;
+  repository: string;
+  branch?: string;
 }
 
 export interface PipelineStackProps extends StackProps {
-    git: GitProps;
-    pipelineAppStageProps: PipelineAppStageProps;
+  git: GitProps;
+  pipelineAppStageProps: PipelineAppStageProps;
 }
 
 export class PipelineStack extends Stack {
-    constructor(scope: Construct, id: string, props: PipelineStackProps) {
-        super(scope, id, props);
+  constructor(scope: Construct, id: string, props: PipelineStackProps) {
+    super(scope, id, props);
 
-        const connectionArn = ssm.StringParameter.fromStringParameterAttributes(this, "ConnectionParameter", {
-            parameterName: props.git.codeStarConnectionSSMParameterName,
-        }).stringValue;
+    const connectionArn = ssm.StringParameter.fromStringParameterAttributes(this, "ConnectionParameter", {
+      parameterName: props.git.codeStarConnectionSSMParameterName,
+    }).stringValue;
 
-        const repositoryName = \`\${props.git.owner}/\${props.git.repository}\`;
-        const branch = props.git.branch ?? DEFAULT_MAIN_BRANCH_NAME;
+    const repositoryName = \`\${props.git.owner}/\${props.git.repository}\`;
+    const branch = props.git.branch ?? DEFAULT_MAIN_BRANCH_NAME;
 
-        const pipeline = new CodePipeline(this, "Pipeline", {
-            synth: new ShellStep("Synth", {
-                input: CodePipelineSource.connection(repositoryName, branch, {
-                    connectionArn: connectionArn,
-                }),
-                commands: ["npm run build", "npm run synth"],
-            }),
-        });
+    const pipeline = new CodePipeline(this, "Pipeline", {
+      synth: new ShellStep("Synth", {
+        input: CodePipelineSource.connection(repositoryName, branch, {
+          connectionArn: connectionArn,
+        }),
+        commands: ["npm run build", "npm run synth"],
+      }),
+    });
 
-        pipeline.addStage(new PipelineAppStage(this, "AppStage", props.pipelineAppStageProps));
-    }
+    pipeline.addStage(new PipelineAppStage(this, "AppStage", props.pipelineAppStageProps));
+  }
 }
 `;
 }
@@ -125,11 +125,11 @@ export interface PipelineAppStageProps extends cdk.StackProps {
 }
 
 export class PipelineAppStage extends cdk.Stage {
-    constructor(scope: Construct, id: string, props: PipelineAppStageProps) {
-        super(scope, id, props);
+  constructor(scope: Construct, id: string, props: PipelineAppStageProps) {
+    super(scope, id, props);
 
-        new ${projectType}Stack(this, "${projectType}", props.${projectTypeVariable}StackProps);
-    }
+    new ${projectType}Stack(this, "${projectType}", props.${projectTypeVariable}StackProps);
+  }
 }
 `;
 }
@@ -144,7 +144,8 @@ export class ${projectType}Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: ${projectType}StackProps) {
     super(scope, id, props);
   }
-}`;
+}
+`;
 }
 
 function toPascalCase(text: string): string {
