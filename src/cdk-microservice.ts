@@ -14,7 +14,7 @@ export class CdkMicroservice extends awscdk.AwsCdkTypeScriptApp {
       prettier: true,
       prettierOptions: {
         settings: {
-          printWidth: 120,
+          printWidth: 140,
         },
       },
       release: false,
