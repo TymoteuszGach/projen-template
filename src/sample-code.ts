@@ -135,7 +135,7 @@ import { Construct } from "constructs";
 import { ${projectType}Stack, ${projectType}StackProps } from "./${projectName}-stack";
 
 export interface PipelineAppStageProps extends cdk.StackProps {
-  ${projectTypeVariable}StackProps?: ${projectType}StackProps
+  ${projectTypeVariable}StackProps?: ${projectType}StackProps;
 }
 
 export class PipelineAppStage extends cdk.Stage {
